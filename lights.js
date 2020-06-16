@@ -1,7 +1,6 @@
-const squares = document.querySelectorAll('.square');
 var seconds = 0;
 var minutes = 0;
-var clicked = false;
+var firstClick = false;
 var timer;
 
 
@@ -26,19 +25,18 @@ $("#cheat").on("click", function(){
 
 
 function lightLogic(){
-    //Light or darken a square when clicked
+    //Light or darken a square when firstClick
     $(".square").on("click", function(){
-     
         //Only start timer on first click
-        if (clicked == false){
-            startTimer(0);
+        if (firstClick == false){
+            startTimer();
         }
-        //set clicked to true now
-        clicked = true;
+        //set firstClick to true now
+        firstClick = true;
 
-        //Light or darken a square when clicked
+        //Light or darken a square when firstClick
         $(this).toggleClass('lit');
-        //capture current clicked square
+        //capture current firstClick square
         var clickedLight = $(this).index();
 
         //handling squares on RIGHT side
@@ -49,8 +47,7 @@ function lightLogic(){
             if(clickedLight - 5 > 0){
                 $(".square").eq(clickedLight - 5).toggleClass('lit');
             }
-            // console.log(clickedLight);
-            // console.log($(".square:not(.lit)").length);
+
         //handling squares on LEFT side
         }else if (clickedLight == 5 || clickedLight == 10 || clickedLight == 15 || clickedLight == 20) {
             $(this).next('.square').toggleClass('lit');
@@ -81,17 +78,23 @@ function lightLogic(){
 
 console.log();
 
-function randomizeLayout(){
-    for(var i = 0; i < squares.length; i++){
-        //make sure too many are not lit up at start & cover cases where reset was hit
-        if ($(".lit").length < 20 || clicked == false){
+function randomizeLayout(x){
+    for(var i = 0; i < $(".square").length; i++){
+        //making sure too many aren't lit to start (also making sure reset still works if many are lit)
+        if ($(".lit").length > 14 && x !== 1){
+            return
+        //making sure too many aren't unlit to start (unlikely but could happen)
+        }else if ($(".lit").length < 2 && x !== 1){
             var randomNum = Math.random();
             if (randomNum < 0.5){
-                squares[i].classList.toggle('lit');
+                $(".square").eq(i).toggleClass('lit');
             }
         }else{
-            return
-        }
+            var randomNum = Math.random();
+            if (randomNum < 0.5){
+                $(".square").eq(i).toggleClass('lit');
+            }
+        }          
     }
 }
 
@@ -106,6 +109,7 @@ function startTimer(x){
     }else{
         timer =  setInterval(function(){
         if(seconds < 59){
+            // console.log($(".square").hasClass(".lit"));
             seconds += 1;
             //Keep the zero for single digit
             if(seconds <10){
@@ -133,8 +137,8 @@ function gameWin(){
 }
 
 function reset(){
-    clicked = false;
-    randomizeLayout();
+    firstClick = false;
+    randomizeLayout(1);
     startTimer(1);
 }
 

@@ -1,3 +1,30 @@
+/* Custom Properties */
+:root {
+    /* --ff-primary: ;
+    --ff-secondary:  */
+
+    --fw-reg: 400;
+    --fw-bold: 700;
+
+    /* Vaporwave Theme */
+    --clr-light: #fc78b7;
+    --clr-dark: #49437b;
+    --clr-accent: #9387f7;
+    --clr-text: #74f6e8;
+
+    /* Dark Theme WIP */ 
+    --drk-light: #d9d80c;
+    --drk-dark: #01021d;
+    --drk-accent: #080752;
+    --drk-text: #085459;
+
+    --fs-h1: 3rem;
+    --fs-h2: 2.25rem;
+    --fs-h3: 1.25rem;
+    --fs-body: 1rem;
+}
+
+
 body {
     background-color: #ffffff;
     background-image:
@@ -13,23 +40,15 @@ body {
 
 p {
     display: inline;
-    color: #74f6e8;
+    font-size: var(--fs-body);
+    color: var(--clr-text);
 }
 
 
 h1 {
-    color: #74f6e8;
-    font-size: 40px;
+    color: var(--clr-text);
+    font-size: var(--fs-h1);
     margin: 0px;
-}
-
-button {
-    border-radius: 10px;
-    box-shadow: 5px 5px 10px black;
-    width: 50px;
-    height: 50px;
-    transition: all 0.2s ease-in-out;
-    outline: none;
 }
 
 
@@ -45,7 +64,7 @@ button {
     display: block;
     text-align: center;
     line-height: 1.1;
-    background-color: #9387f7;
+    background-color: var(--clr-accent);
     margin-top: 0px;
     font-weight: normal;
     text-transform: uppercase;
@@ -55,20 +74,26 @@ button {
 
 .square {
     /* background:rgb(115, 84, 117); */
-    background: #49437b;
+    background: var(--clr-dark);
     width: 15%;
-    padding-bottom: 10%;
-    padding-left: 10%;
     padding: 40px;
     margin: 1.66%;
     border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+    height: 50px;
+    transition: all 0.2s ease-in-out;
+    outline: none;
 
+}
 
+.square:active {
+    box-shadow: 0 1px black;
+    transform: translateY(1px);
 }
 
 .lit {
     /* background:rgb(240, 0, 255); */
-    background:#fc78b7;;
+    background:var(--clr-light);
     border-radius: 10px;
     box-shadow: 5px 5px 10px black;
 }
@@ -85,21 +110,28 @@ button {
 .timer {
     display: block;
     margin: auto auto;
-    background: #49437b;
+    background: var(--clr-dark);
     max-width: 80px;
     border: .5px solid grey;
     box-shadow: 1px 1px 10px black;
     border-radius: 2px;
 }
 
+
 #reset, #cheat{
+    outline: none;
     margin: auto auto;
-    background: #9387f7;
+    background: var(--clr-accent);
     padding: 20px 50px;
-    color: #74f6e8;
+    color: var(--clr-text);
     text-align: center;
     line-height: 1px;
     border-radius: 10px;
     box-shadow: 5px 5px 10px black;
-    font-weight: bold;
+    font-weight: var(--fw-bold);
+}
+
+#reset:active, #cheat:active {
+    box-shadow: 0 2px black;
+    transform: translateY(2px);
 }
