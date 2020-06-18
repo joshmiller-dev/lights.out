@@ -114,7 +114,7 @@ function buttonLogic(){
             $(this).prev('.square').toggleClass('lit');
             $(".square").eq(clickedLight + 5).toggleClass('lit');
             //handling negative number weirdness
-            if(clickedLight - 5 > 0){
+            if(clickedLight - 5 >= 0){
                 $(".square").eq(clickedLight - 5).toggleClass('lit');
             }
 
@@ -122,7 +122,7 @@ function buttonLogic(){
         }else if (clickedLight == 5 || clickedLight == 10 || clickedLight == 15 || clickedLight == 20) {
             $(this).next('.square').toggleClass('lit');
             $(".square").eq(clickedLight + 5).toggleClass('lit');
-            if(clickedLight - 5 > 0){
+            if(clickedLight - 5 >= 0){
                 $(".square").eq(clickedLight - 5).toggleClass('lit');
             }
 
@@ -131,7 +131,7 @@ function buttonLogic(){
             $(this).prev('.square').toggleClass('lit');
             $(this).next('.square').toggleClass('lit');
             $(".square").eq(clickedLight + 5).toggleClass('lit');
-            if(clickedLight - 5 > 0){
+            if(clickedLight - 5 >= 0){
                 $(".square").eq(clickedLight - 5).toggleClass('lit');
             }
         }
