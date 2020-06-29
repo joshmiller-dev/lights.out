@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LIGHTS OUT</title>
     <link rel="stylesheet" href="css/lights.css">
+    <link href="https://fonts.googleapis.com/css2?family=Karla:wght@400;700&family=Rubik:wght@400;700&display=swap" rel="stylesheet">
     <script src="node_modules/jquery/dist/jquery.min.js"></script>
 </head>
 <body class="content">
@@ -12,7 +13,7 @@
     <section class="banner">
         <h1>LIGHTS OUT</h1>
         <br>
-        <p>Switch all of the lights off by clicking on the squares below.</p>
+        <p>Switch off all of the lights by clicking squares.</p>
     </section>
 
 
@@ -44,17 +45,24 @@
         <button class="square"></button>
     </div>
 
-    <div class="timer">
-        <p>Time: </p>
-        <p id="minutes">0</p>
-        <p> : </p>
-        <p id="seconds">00</p>
+    <div class="display">
+        <div class="timer">
+            <p>Time: </p>
+            <p id="minutes">0</p>
+            <p> : </p>
+            <p id="seconds">00</p>
+        </div>
+    
+        <div class="moves">
+            <p>Moves: </p>
+            <p id="moves">0</p>
+        </div>
     </div>
 
-    <div class="options">
-        <button id ="reset">New Game</button>
-        <!-- <button id ="cheat">Cheat</button> -->
-    </div>
+
+    <button class ="reset">New Game</button>
+    <button class="solve">Show Solution</button>
+
 
 
     <script src="js/lights.js"></script>

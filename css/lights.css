@@ -1,7 +1,8 @@
 /* Custom Properties */
 :root {
-    /* --ff-primary: ;
-    --ff-secondary:  */
+    /* fonts */
+    --ff-primary: 'Rubik', sans-serif;
+    --ff-secondary: 'Karla', sans-serif;
 
     --fw-reg: 400;
     --fw-bold: 700;
@@ -9,46 +10,47 @@
     /* Vaporwave Theme */
     --clr-light: #fc78b7;
     --clr-dark: #49437b;
-    --clr-accent: #9387f7;
+    --clr-accent: #756CC5;
     --clr-text: #74f6e8;
 
-    /* Dark Theme WIP */ 
+    /* Dark Theme WIP 
     --drk-light: #d9d80c;
     --drk-dark: #01021d;
     --drk-accent: #080752;
-    --drk-text: #085459;
+    --drk-text: #085459; */
 
-    --fs-h1: 3rem;
-    --fs-h2: 2.25rem;
+    /* font sizes */
+    --fs-h1: 2.5rem;
+    --fs-h2: 2rem;
     --fs-h3: 1.25rem;
     --fs-body: 1rem;
 }
 
+/* * { border: 1px solid red; } */
 
-body {
-    background-color: #ffffff;
-    background-image:
-      linear-gradient(45deg, #000 25%, transparent 25%),
-      linear-gradient(45deg, transparent 75%, #000 75%),
-      linear-gradient(45deg, transparent 75%, #000 75%),
-      linear-gradient(45deg, #000 25%, transparent 25%);
-    background-size:100px 100px;
-    background-position:0 0, 0 0, -50px -50px, 50px 50px;
+html, body {
+    background-color: #8EC5FC;
+    background-image: linear-gradient(62deg, #8EC5FC 0%, #E0C3FC 100%);
+    font-family: var(--ff-primary);
     text-align: center;
+    width: 100%;
+    height: 100%;
 }
 
 
 p {
     display: inline;
     font-size: var(--fs-body);
+    font-family: var(--ff-secondary);
     color: var(--clr-text);
 }
 
 
 h1 {
     color: var(--clr-text);
-    font-size: var(--fs-h1);
     margin: 0px;
+    font-weight: var( --fw-bold);
+    font-size: var(--fs-h1);
 }
 
 .content {
@@ -57,36 +59,29 @@ h1 {
 }
 
 
-.options {
-    display: flex;
-    flex-direction: row;
-    justify-content: center;
-    padding: 5px;
-    margin: 10px;
-}
-
 .banner {
     display: block;
-    margin: 0 auto;
     text-align: center;
     line-height: 1.1;
     background-color: var(--clr-accent);
-    margin-top: 0px;
+    box-shadow: 5px 5px 10px black;
+    margin-top: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+    margin-bottom: 20px;
     font-weight: normal;
     text-transform: uppercase;
-    padding: 20px;
+    padding: 10px;
     border-radius: 10px;
 }
 
 .square {
-    /* background:rgb(115, 84, 117); */
     background: var(--clr-dark);
-    width: 15%;
-    padding: 40px;
-    margin: 1.66%;
+    padding: 45%;
+    margin: 2% 2% 2% 2%;
+    border-width: thin;
     border-radius: 10px;
     box-shadow: 5px 5px 10px black;
-    height: 50px;
     transition: all 0.2s ease-in-out;
     outline: none;
 
@@ -98,36 +93,44 @@ h1 {
 }
 
 .lit {
-    /* background:rgb(240, 0, 255); */
-    background:var(--clr-light);
+    background: var(--clr-light);
     border-radius: 10px;
     box-shadow: 5px 5px 10px black;
 }
 
+.mark {
+    background: #f02253;
+}
+
 
 .gameboard {
-    margin: 10px auto 10px 10px;
     display: grid;
+    grid-template-columns: 20% 20% 20% 20% 20%;
+    grid-template-rows: 20% 20% 20% 20% 20%;
+    padding-top: 2%;
+    margin: 10px 10px 10px 10px;
     justify-content: space-evenly;
     align-items: center;
-    grid-template-columns: repeat(5, 100px);
-    grid-template-rows: repeat(5, 100px);
+
 }
 
-.timer {
+.display {
     display: block;
-    margin: auto auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 15px;
     background: var(--clr-dark);
-    max-width: 80px;
+    max-width: 25%;
     border: .5px solid grey;
     box-shadow: 1px 1px 10px black;
-    border-radius: 2px;
+    border-radius: 10px;
 }
 
 
-#reset, #cheat{
+.reset {
     outline: none;
-    margin: auto auto;
+    margin-top: 15px;
+    margin-bottom: 25px;
     background: var(--clr-accent);
     padding: 20px 50px;
     color: var(--clr-text);
@@ -136,9 +139,25 @@ h1 {
     border-radius: 10px;
     box-shadow: 5px 5px 10px black;
     font-weight: var(--fw-bold);
+    font-size: var(--fs-h3);
 }
 
-#reset:active, #cheat:active {
+.solve {
+    outline: none;
+    margin-top: 0;
+    margin-bottom: 15px;
+    background: var(--clr-accent);
+    padding: 20px 30px;
+    color: var(--clr-text);
+    text-align: center;
+    line-height: 1px;
+    border-radius: 10px;
+    box-shadow: 5px 5px 10px black;
+    font-weight: var(--fw-bold);
+    font-size: var(--fs-h3);
+}
+
+.reset:active {
     box-shadow: 0 2px black;
     transform: translateY(2px);
 }
