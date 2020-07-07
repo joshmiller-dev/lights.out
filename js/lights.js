@@ -25,6 +25,13 @@ const quietPattern2 = [1, 1, 0, 1, 1,
                        0, 0, 0, 0, 0,
                        1, 1, 0, 1, 1];
 
+const quietPattern3 = [0, 1, 1, 1, 0, 
+                       1, 0, 1, 0, 1, 
+                       1, 1, 0, 1, 1, 
+                       1, 0, 1, 0, 1,
+                       0, 1, 1, 1, 0];
+
+
 
 init();
 
@@ -36,13 +43,6 @@ function init(){
     lightBoard();
     //handles button logic
     buttonLogic();
-
-    // console.log(gridLayout);
-    // console.log(quietPattern1);
-    // console.log(quietPattern2);
-    // console.log(matches1);
-    // console.log(matches2);
-    // console.log(solvable);
 }
 
 
@@ -221,6 +221,8 @@ function gameWin(){
     setTimeout(function(){
         alert("You have won in: " + minutes + " minutes, " + seconds + " seconds using " + moves + " moves!");
     }, 500);
+    $(".square").prop("disabled", true);
+    $(".solve").prop("disabled", true);
 }
 
 function reset(){
@@ -228,14 +230,16 @@ function reset(){
     $("#moves").text(moves);
     solvable = false;
     firstClick = false;
+    solving = false;
     if ($(".square").hasClass("mark")){
         $(".square").removeClass('mark');
     }
-    solvable = false;
     firstRow = [];
     secondRow = [];
     thirdRow = [];
     fourthRow = [];
+    $(".square").prop("disabled", false);
+    $(".solve").prop("disabled", false);
     randomizeLayout();
     lightBoard();
     //reset timer
@@ -243,16 +247,21 @@ function reset(){
 }
 
 $(".solve").on("click", function(){
-    //remove previously marked squares
-    for (i = 0; i < gridLayout.length; i++){
-        $(".square").eq(i).removeClass("mark");
+    if (solving == true){
+        //remove previously marked squares (allows toggling of solve button)
+        for (i = 0; i < gridLayout.length; i++){
+            $(".square").eq(i).removeClass('mark');
+        }
+        solving = false;
+    }else{
+        solving = true;
+        solveGame();
     }
-    solving = true;
-    solveGame();
+
 });
 
 function solveGame(){
-    
+
     //mark solution squares for first row
     if (firstRow !== emptyRow){
         for (var i = 0; i < 5; i++){
@@ -260,6 +269,8 @@ function solveGame(){
                 $(".square").eq(i + 5).addClass('mark');
             }else{
                 $(".square").eq(i + 5).removeClass('mark');
+                $(".square").eq(i + 10).removeClass('mark');
+                $(".square").eq(i + 15).removeClass('mark');
             }
         }
     }
@@ -271,19 +282,23 @@ function solveGame(){
                 $(".square").eq(i + 5).addClass('mark');
             }else{
                 $(".square").eq(i + 5).removeClass('mark');
+                $(".square").eq(i + 10).removeClass('mark');
+                $(".square").eq(i + 15).removeClass('mark');
             }
         }       
     }
-    if (secondRow == emptyRow){
+    if (secondRow == emptyRow && firstRow == emptyRow){
         for (var i = 10; i < 15; i++){
             if ($(".square").eq(i).hasClass("lit")){
                 $(".square").eq(i + 5).addClass('mark');
             }else{
                 $(".square").eq(i + 5).removeClass('mark');
+                $(".square").eq(i + 10).removeClass('mark');
+
             }
         }      
     }
-    if (thirdRow == emptyRow){
+    if (thirdRow == emptyRow && secondRow == emptyRow && firstRow == emptyRow){
         for (var i = 15; i < 20; i++){
             if ($(".square").eq(i).hasClass("lit")){
                 $(".square").eq(i + 5).addClass('mark');
